@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DayCell from "./DayCell";
 
-export default function DayGrid() {
-  const DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-  const TODAY = new Date();
-  const [DATES, setDATES] = useState(new Array(14).fill(null));
-  const currentDay = TODAY.getDay();
-  const currentDate = TODAY.getDate();
-  const currentIdx = currentDay - 1;
+interface props {
+  DATES: number[];
+  currentIdx: number;
+}
 
-  const getWeekDates = () => {
-    let currentArr = DATES.map((day, i) => {
-      let gap = i - currentIdx;
-      return currentDate + gap;
-    });
-    setDATES([...currentArr]);
-  };
-  useEffect(() => {
-    getWeekDates();
-  }, []);
+export default function DayGrid({ DATES, currentIdx }: props) {
+  const DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
   return (
     <Wrapper>

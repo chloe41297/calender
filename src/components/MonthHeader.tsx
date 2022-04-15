@@ -1,11 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function MonthHeader() {
+interface props {
+  currentMonth: number;
+  currentYear: number;
+  setToday: React.Dispatch<React.SetStateAction<Date>>;
+}
+
+export default function MonthHeader({
+  currentMonth,
+  currentYear,
+  setToday,
+}: props) {
+  const MONTH = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   return (
     <Wrapper>
-      <MainTitle>Apr</MainTitle>
-      <MainTitle>2022</MainTitle>
+      <MainTitle>{MONTH[currentMonth]}</MainTitle>
+      <MainTitle>{currentYear}</MainTitle>
     </Wrapper>
   );
 }
