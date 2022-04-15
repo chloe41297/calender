@@ -20,4 +20,5 @@ export default App;
 
 const Main = styled.main`
   margin: 80px;
+  width: calc(100vw - 160px);
 `;
