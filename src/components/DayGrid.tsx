@@ -3,13 +3,12 @@ import styled from "styled-components";
 import DayCell from "./DayCell";
 
 interface props {
-  DATES: number[];
-  currentIdx: number;
+  DATES: Date[];
 }
 
-export default function DayGrid({ DATES, currentIdx }: props) {
+export default function DayGrid({ DATES }: props) {
   const DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-
+  const TODAY = new Date();
   return (
     <Wrapper>
       {DAYS.map((day) => (
@@ -19,9 +18,13 @@ export default function DayGrid({ DATES, currentIdx }: props) {
         return (
           date && (
             <DayCell
-              dateProp={date}
-              isToday={i === currentIdx ? true : false}
-              key={date}
+              dateProp={date.getDate()}
+              isToday={
+                date.toLocaleDateString() === TODAY.toLocaleDateString()
+                  ? true
+                  : false
+              }
+              key={i}
             ></DayCell>
           )
         );

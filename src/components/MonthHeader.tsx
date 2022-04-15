@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { MdArrowLeft, MdArrowRight } from "react-icons/md";
+import { VscCircleFilled } from "react-icons/vsc";
 
 interface props {
   currentMonth: number;
   currentYear: number;
-  setToday: React.Dispatch<React.SetStateAction<Date>>;
+  TODAY: Date;
+  setTODAY: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 export default function MonthHeader({
   currentMonth,
   currentYear,
-  setToday,
+  TODAY,
+  setTODAY,
 }: props) {
   const MONTH = [
     "Jan",
@@ -27,10 +31,30 @@ export default function MonthHeader({
     "Dec",
   ];
 
+  const handlePrev = () => {
+    setTODAY(
+      new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate() - 7)
+    );
+  };
+  const handleNext = () => {
+    setTODAY(
+      new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate() + 7)
+    );
+  };
+  const handleNow = () => {
+    let current = new Date();
+    setTODAY(
+      new Date(current.getFullYear(), current.getMonth(), current.getDate())
+    );
+  };
+
   return (
     <Wrapper>
       <MainTitle>{MONTH[currentMonth]}</MainTitle>
       <MainTitle>{currentYear}</MainTitle>
+      <MdArrowLeft size={40} onClick={handlePrev}></MdArrowLeft>
+      <VscCircleFilled size={25} onClick={handleNow}></VscCircleFilled>
+      <MdArrowRight size={40} onClick={handleNext}></MdArrowRight>
     </Wrapper>
   );
 }

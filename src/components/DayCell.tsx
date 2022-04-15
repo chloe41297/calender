@@ -35,7 +35,7 @@ const Date = styled.div<isTodayColor>`
 const Content = styled.div`
   width: 100%;
   min-height: 200px;
-  max-height: 300px;
+  max-height: 400px;
   height: 100%;
   box-sizing: border-box;
   word-break: break-all;
