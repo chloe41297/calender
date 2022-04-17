@@ -14,7 +14,7 @@ function App() {
 
   const getWeekDates = () => {
     let currentArr = DATES.map((day, i) => {
-      let gap = i - (currentDay - 1);
+      let gap = currentDay === 0 ? i - 6 : i - (currentDay - 1);
       let diffDate = new Date(currentYear, currentMonth, currentDate + gap);
       return diffDate;
     });

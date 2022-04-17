@@ -1,20 +1,63 @@
 import React from "react";
 import styled from "styled-components";
+import ContentBox from "./ContentBox";
 
 interface props {
-  dateProp: number;
+  dateProp: Date;
   isToday: boolean;
 }
 interface isTodayColor {
   isToday: boolean;
 }
 
+interface dataType {
+  [props: number]: any;
+}
+
 export default function DayCell({ dateProp, isToday }: props) {
+  const data: dataType = {
+    1650034800000: [
+      {
+        id: 1,
+        content: { title: "i love it!!!!!!", subTitle: "Oops i did it again" },
+      },
+      {
+        id: 2,
+        content: {
+          title: " this is second",
+          subTitle: "woooow",
+        },
+      },
+      {
+        id: 3,
+        content: {
+          title: " this is second",
+          subTitle: "woooow",
+        },
+      },
+    ],
+  };
+  const currentId = dateProp.valueOf();
+
   return (
     <Wrapper>
       <Bar isToday={isToday}></Bar>
-      <Date isToday={isToday}>{dateProp}</Date>
-      <Content>dddddddddddddddddddddd</Content>
+      <Date isToday={isToday}>{dateProp.getDate()}</Date>
+      <Content>
+        {data[currentId]
+          ? Object.values(data[currentId])?.map((item: any) => {
+              const { title, subTitle } = item.content;
+
+              return (
+                <ContentBox
+                  title={title}
+                  subTitle={subTitle}
+                  key={item.id}
+                ></ContentBox>
+              );
+            })
+          : ""}
+      </Content>
     </Wrapper>
   );
 }

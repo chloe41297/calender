@@ -18,7 +18,7 @@ export default function DayGrid({ DATES }: props) {
         return (
           date && (
             <DayCell
-              dateProp={date.getDate()}
+              dateProp={date}
               isToday={
                 date.toLocaleDateString() === TODAY.toLocaleDateString()
                   ? true

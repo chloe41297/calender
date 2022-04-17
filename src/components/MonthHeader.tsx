@@ -23,7 +23,7 @@ export default function MonthHeader({
     "Apr",
     "May",
     "June",
-    "Jul",
+    "July",
     "Aug",
     "Sep",
     "Oct",
