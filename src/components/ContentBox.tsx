@@ -7,7 +7,6 @@ interface props {
 }
 
 export default function ContentBox({ title, subTitle }: props) {
-  console.log(title, subTitle);
   return (
     <Wrapper>
       <Title>{title}</Title>
@@ -20,6 +19,7 @@ const Wrapper = styled.div`
   background-color: #eeeeee;
   border-radius: 5px;
   padding: 10px;
+  margin: 5px 0;
 `;
 const Title = styled.div`
   font-size: 18px;

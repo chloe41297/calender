@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AddContentBtn from "./AddContentBtn";
 import ContentBox from "./ContentBox";
 
 interface props {
   dateProp: Date;
   isToday: boolean;
+  setToggleState: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  sideBarState: boolean;
+  setSideBarState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface isTodayColor {
   isToday: boolean;
@@ -14,7 +18,13 @@ interface dataType {
   [props: number]: any;
 }
 
-export default function DayCell({ dateProp, isToday }: props) {
+export default function DayCell({
+  dateProp,
+  isToday,
+  setToggleState,
+  sideBarState,
+  setSideBarState,
+}: props) {
   const data: dataType = {
     1650034800000: [
       {
@@ -37,10 +47,19 @@ export default function DayCell({ dateProp, isToday }: props) {
       },
     ],
   };
+
   const currentId = dateProp.valueOf();
+  const [isMouseOver, setIsMouseOver] = useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper
+      onMouseEnter={() => {
+        setIsMouseOver((prev) => !prev);
+      }}
+      onMouseLeave={() => {
+        setIsMouseOver((prev) => !prev);
+      }}
+    >
       <Bar isToday={isToday}></Bar>
       <Date isToday={isToday}>{dateProp.getDate()}</Date>
       <Content>
@@ -57,6 +76,14 @@ export default function DayCell({ dateProp, isToday }: props) {
               );
             })
           : ""}
+
+        <AddContentBtn
+          isMouseOver={isMouseOver}
+          setToggleState={setToggleState}
+          date={dateProp}
+          sideBarState={sideBarState}
+          setSideBarState={setSideBarState}
+        ></AddContentBtn>
       </Content>
     </Wrapper>
   );

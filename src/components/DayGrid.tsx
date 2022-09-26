@@ -4,9 +4,17 @@ import DayCell from "./DayCell";
 
 interface props {
   DATES: Date[];
+  setToggleState: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  sideBarState: boolean;
+  setSideBarState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DayGrid({ DATES }: props) {
+export default function DayGrid({
+  DATES,
+  setToggleState,
+  sideBarState,
+  setSideBarState,
+}: props) {
   const DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const TODAY = new Date();
   return (
@@ -25,6 +33,9 @@ export default function DayGrid({ DATES }: props) {
                   : false
               }
               key={i}
+              sideBarState={sideBarState}
+              setSideBarState={setSideBarState}
+              setToggleState={setToggleState}
             ></DayCell>
           )
         );
